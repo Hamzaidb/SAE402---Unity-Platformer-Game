@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public CoinManager cm;
 
     private float moveDirectionX;
 
@@ -193,4 +194,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable() {
         onTogglePauseEvent.OnEventRaised -= OnPauseEvent;
     }
+
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.CompareTag("Apple"))
+        {
+            cm.coinCount++;
+        }
+    }
+    
 }

@@ -6,6 +6,7 @@ public class Collectible : MonoBehaviour
     public GameObject collectedEffect;
     public SpriteRenderer spriteRenderer;
 
+
     private void Awake() {
         spriteRenderer.sprite = data.sprite;
     }
@@ -21,6 +22,7 @@ public class Collectible : MonoBehaviour
             data.PickItem(transform.position);
 
             Destroy(gameObject);
+
         }
     }
 }

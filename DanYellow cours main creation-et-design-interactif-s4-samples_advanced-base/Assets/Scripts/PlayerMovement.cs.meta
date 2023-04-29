@@ -3,7 +3,14 @@ guid: 68040f65b9cfd9a4383ecc80241a18d0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rb: {instanceID: 0}
+  - groundCheck: {instanceID: 0}
+  - animator: {instanceID: 0}
+  - trailRenderer: {instanceID: 0}
+  - onLandingFastSO: {fileID: 11400000, guid: 1b81751bea5122a49b0f5a48dcc10219, type: 2}
+  - landingFastShakeInfo: {instanceID: 0}
+  - onTogglePauseEvent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

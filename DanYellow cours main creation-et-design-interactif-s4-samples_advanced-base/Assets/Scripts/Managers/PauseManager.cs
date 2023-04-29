@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PauseManager : MonoBehaviour
 {
     public BoolEventChannelSO onTogglePauseEvent;
     public GameObject pauseMenuUI;
+   
+
 
     bool isGamePaused = false;
 
 
     private void Awake() {
         pauseMenuUI.SetActive(false);
+
     }
 
     void Update()
@@ -26,9 +31,14 @@ public class PauseManager : MonoBehaviour
             {
                 Pause();
             }
+            
         }
     }
 
+
+
+
+   
     public void Resume()
     {
         Time.timeScale = 1;
@@ -36,6 +46,7 @@ public class PauseManager : MonoBehaviour
         onTogglePauseEvent.Raise(isGamePaused);
         pauseMenuUI.SetActive(isGamePaused);
     }
+
 
     void Pause()
     {

@@ -6,6 +6,19 @@ public class CurrentSceneManager : MonoBehaviour
     public StringEventChannelSO OnLevelEnded;
     public VoidEventChannelSO onRestartLastCheckpoint;
 
+    public BoolEventChannelSO onTogglePauseEvent;
+    public GameObject pauseMenuUI;
+   
+
+
+    bool isGamePaused = false;
+
+
+    private void Awake() {
+        pauseMenuUI.SetActive(false);
+
+    }
+
     private void OnEnable() {
         // on souscrit aux evenements
         OnLevelEnded.OnEventRaised +=  LoadScene;
@@ -28,6 +41,8 @@ public class CurrentSceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             RestartLastCheckpoint();
+            
+
         }
 
         if (Input.GetKeyDown(KeyCode.F11))
@@ -60,6 +75,10 @@ public class CurrentSceneManager : MonoBehaviour
     {
         Debug.Log("RestartLastCheckpoint");
         onRestartLastCheckpoint.Raise();
+        Time.timeScale = 1;
+        isGamePaused = false;
+        onTogglePauseEvent.Raise(isGamePaused);
+        pauseMenuUI.SetActive(isGamePaused);
         // Refill life to full
         // Position to last checkpoint
         // Remove menu
