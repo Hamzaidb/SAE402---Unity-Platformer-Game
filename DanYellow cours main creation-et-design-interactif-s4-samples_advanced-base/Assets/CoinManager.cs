@@ -19,9 +19,9 @@ public class CoinManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        coinText.text = "Apple Count: " + coinCount.ToString();
+        coinText.text = "Apple Count: " + coinCount.ToString() + " / 25";
 
-        if(coinCount == 20 && !doorDestroyed)
+        if(coinCount == 1 && !doorDestroyed)
         {
             doorDestroyed = true;
             Destroy(door);

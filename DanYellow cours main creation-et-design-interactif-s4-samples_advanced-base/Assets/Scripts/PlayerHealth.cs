@@ -10,6 +10,9 @@ public class PlayerHealth : MonoBehaviour
     public VoidEventChannelSO onValueUpdated;
     public VoidEventChannelSO onRestartLastCheckpoint;
 
+    [SerializeField] private AudioSource deathSoundEffect;
+    [SerializeField] private AudioSource hitSoundEffect;
+
     public Animator animator;
 
     public SpriteRenderer spriteRenderer;
@@ -65,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
         
         currentHealth.CurrentValue -= damage;
         onValueUpdated.Raise();
+        hitSoundEffect.Play();
         if (currentHealth.CurrentValue <= 0)
         {
             Die();
@@ -81,6 +85,8 @@ public class PlayerHealth : MonoBehaviour
         onPlayerDeath.Raise();
         transform.Rotate(0f, 0f, 45f);
         animator.SetTrigger("OnPlayerDeath");
+        GameOverManager.instance.IfPlayerDead();
+        deathSoundEffect.Play();
     }
 
     public void OnPlayerDeathAnimationCallback()

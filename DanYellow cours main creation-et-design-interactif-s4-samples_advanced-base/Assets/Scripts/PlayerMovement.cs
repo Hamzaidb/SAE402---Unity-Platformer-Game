@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public CoinManager cm;
 
+    [SerializeField] private AudioSource jumpSoundEffect;
+
     private float moveDirectionX;
 
     private bool isFacingRight = true;
@@ -73,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && (isGrounded || jumpCount < maxJumpCount))
         {
             Jump(false);
+            jumpSoundEffect.Play();
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)

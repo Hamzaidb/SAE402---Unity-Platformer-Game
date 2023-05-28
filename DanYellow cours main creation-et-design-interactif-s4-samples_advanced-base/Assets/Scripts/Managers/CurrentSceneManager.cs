@@ -8,14 +8,17 @@ public class CurrentSceneManager : MonoBehaviour
 
     public BoolEventChannelSO onTogglePauseEvent;
     public GameObject pauseMenuUI;
-   
 
+    public GameObject gameOverUI;
+
+    public GameObject SettingsWindow;
 
     bool isGamePaused = false;
 
 
     private void Awake() {
         pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
 
     }
 
@@ -69,6 +72,15 @@ public class CurrentSceneManager : MonoBehaviour
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        isGamePaused = false;
+        onTogglePauseEvent.Raise(isGamePaused);
+        pauseMenuUI.SetActive(isGamePaused);
     }
 
     public void RestartLastCheckpoint()
@@ -90,6 +102,16 @@ public class CurrentSceneManager : MonoBehaviour
     public void GameOverScreen()
     {
         Debug.Log("GameOverScreen");
+
+    }
+
+    public void SettingsButton(){
+        SettingsWindow.SetActive(true);
+    }
+
+    public void CloseSettingsWindow()
+    {
+        SettingsWindow.SetActive(false);
     }
 
     public void QuitGame()
